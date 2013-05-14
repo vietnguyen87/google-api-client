@@ -1,22 +1,24 @@
 # Google API Client Wrapper
 
-This wrapper aims to provides a simple interface for Symfony to utilize helper classes included in the Google APIs Client Library for PHP (0.6.2).
+This wrapper makes injecting Google API Client (0.6.2) Libaries for Symfony easier.
 
-Register the wrapper in the autoloader with **registerPrefixes()**:
+Register the wrapper in the autoloader with **registerNamespaces()**:
 
 	// app/autoload.php
 	// ...
 	
-    $loader->registerPrefixes(array(
-    '	Google_' => $vendor_root . '/google-api-client/lib'
+    $loader->registerNamespaces(array(
+    	'Google' => $vendor_root . '/google-api-client/lib'
 	));
 
-Anywhere in the app, you can instantiate Google API helpers as needed:
+Anywhere in the app, you can inject Google API helpers as needed:
 
-    // Create a new Google_Client
-    $client = \Google_APIClient::newClientInstance();
+    // config/services.yml
+    // ...
     
-    // Pass client to AnalyticsService
-    $analytics = \Google_APIClient::newContribInstance('AnalyticsService', array($client));
+    GoogleClient:
+        class: Google\Client
+        arguments:
+          - { application_name: MyApp, oauth2_client_id: %google.client_id% }
     
 Refer to Google API PHP Client [documentation](https://code.google.com/p/google-api-php-client/) for more details on usage and available helpers.

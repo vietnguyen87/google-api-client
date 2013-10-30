@@ -1,0 +1,19 @@
+{
+    "name": "shopigniter/google-api-client",
+    "description": "A Symfony2 bundle wrapper for Google APIs Client Library for PHP",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "ShopIgniter",
+            "homepage": "http://www.shopigniter.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Google": "lib/"
+        }
+    }
+}
